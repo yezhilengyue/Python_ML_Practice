@@ -5,4 +5,4 @@ Besides basics of ML knowledge, there are three ML projects using some well-know
 
 * [Classification] Iris Dataset
 * [Regression] Boston Housing Price Dataset
-* [Binary Classification] (https://github.com/yezhilengyue/Python_ML_Practice/tree/master/Projects/%5BClassification-bi%5Dsonar_rock) Sonar, Mines and Rocks Dataset
+* [Binary Classification](https://github.com/yezhilengyue/Python_ML_Practice/tree/master/Projects/%5BClassification-bi%5Dsonar_rock) Sonar, Mines and Rocks Dataset
