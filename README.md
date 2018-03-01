@@ -18,9 +18,9 @@ Overall, when given a new ML project, the workflow could be as following:
 2. **Summarize data**
   Use descriptive statistics and visualization techniques to get a grasp of data. 
   * Descriptive Statistics
-    data dimension, type, attribute features (count, mean, std, min/max, percentiles), class categories, correlations between attributes, skew of univariate distributions
+⋅⋅⋅⋅data dimension, type, attribute features (count, mean, std, min/max, percentiles), class categories, correlations between attributes, skew of univariate distributions
   * Visualization
-    univariate plots(histograms, density plot, boxplot), multivariate plots(correlation matrix plot, scatter plot matrix)
+⋅⋅⋅⋅univariate plots(histograms, density plot, boxplot), multivariate plots(correlation matrix plot, scatter plot matrix)
 
 3. **Data preprocessing [Incompleted]**
   The reason for preprocessing data is that different algorithms make different assumptions about data requiring different transformation. Here are some common processing techniques:
