@@ -24,7 +24,7 @@ Overall, when given a new ML project, the workflow could be as following:
      univariate plots(histograms, density plot, boxplot), multivariate plots(correlation matrix plot, scatter plot matrix)
 
 3. **Data preprocessing [Incompleted]**
-   - Transformation
+   - Transformation <br />
    The reason for preprocessing data is that different algorithms make different assumptions about data requiring different transformation. Here are some common processing techniques:
      - Rescaling <br />
      To limit varying attributes ranges all between 0 and 1. Useful for weight-inputs regression/neural networks and kNN.
