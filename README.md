@@ -17,7 +17,7 @@ Overall, when given a new ML project, the workflow could be as following:
 
 2. **Summarize data**
   Use descriptive statistics and visualization techniques to get a grasp of data. 
-   - Descriptive Statistics__
+   - Descriptive Statistics <br />
 data dimension, type, attribute features (count, mean, std, min/max, percentiles), class categories, correlations between attributes, skew of univariate distributions
    - Visualization
   ⋅⋅⋅univariate plots(histograms, density plot, boxplot), multivariate plots(correlation matrix plot, scatter plot matrix)
