@@ -27,7 +27,7 @@ Overall, when given a new ML project, the workflow could be as following:
    - Transformation <br />
        The reason for preprocessing data is that different algorithms make different assumptions about data requiring different transformation. Here are some common processing techniques:
      - Rescaling <br />
-       To limit varying attributes ranges all between 0 and 1. Useful for weight-inputs regression/neural networks and kNN.
+       To limit varying attributes ranges all between 0 and 1. Useful for weight-inputs regression/neural networks and kNN.
           
      - Standardization <br />
        To transform attributes with a Gaussian distribution to a standard Gaussian distribution (0 mean and 1 std). Useful for linear/logistic regression and LDA
@@ -42,13 +42,11 @@ Overall, when given a new ML project, the workflow could be as following:
      Irrelevant or partially relevant features can negatively impact model performance, such as decreasing the accuracy of many models. Feature Selection is to select features that contribute most to the prediction variable or output in which you are interested. It can help reduce overfiting, improve accuracy, reduce training time. Here are some common processing techniques: <br />
 
      - Statistical Test Selection with *chi-2* <br />
-     To select those features that have the strongest relationship with output variable
-     
+       To select those features that have the strongest relationship with output variable 
      - Recursive Feature Elimination (RFE) <br />  
-     To recursively removing attributes and building a model on those attributes that remain.
-     
+       To recursively removing attributes and building a model on those attributes that remain.
      - Principal Component Analysis (PCA) <br />
-     A kind of data reduction technique. It uses linear algebra to transform the dataset into a compressed form and choose the number of dimensions or principal components in the transformed result.
+       A kind of data reduction technique. It uses linear algebra to transform the dataset into a compressed form and choose the number of dimensions or principal components in the transformed result.
      
      - Feature importance <br />
      To use bagged decision trees such as Random Forest and Extra Trees to estimate the importance of features.
