@@ -38,7 +38,7 @@ Overall, when given a new ML project, the workflow could be as following:
      - Binarization <br />
      To transform data using a binary threshold.(1 for above threshold and 0 for below threshold)
      
-   - Feature Selection
+   - Feature Selection <br />
    Irrelevant or partially relevant features can negatively impact model performance, such as decreasing the accuracy of many models. Feature Selection is to select features that contribute most to the prediction variable or output in which you are interested. It can help reduce overfiting, improve accuracy, reduce training time. Here are some common processing techniques:
      - Statistical Test Selection with *chi-2* <br />
      To select those features that have the strongest relationship with output variable
@@ -53,10 +53,10 @@ Overall, when given a new ML project, the workflow could be as following:
      To use bagged decision trees such as Random Forest and Extra Trees to estimate the importance of features.
 
 4. **Algorithm Evaluation**
-   - Separate train/test dataset (Resampling)
-     In most cases, *k-fold* Cross Validation technique (e.g. k = 3, 5 or 10) will be used to estimate algorithm performance with less variance. At first, the dataset will be splited into *k* parts. Then the algorithm is trained on *k-1* folds with one held back and tested on the held back fold. Repeatedly, each fold of the dataset will be given a chance to be the held back test set. After all these, you can summarize using the mean and std of such *k* different performance scores.
+   - Separate train/test dataset (Resampling) <br />
+   In most cases, *k-fold* Cross Validation technique (e.g. k = 3, 5 or 10) will be used to estimate algorithm performance with less variance. At first, the dataset will be splited into *k* parts. Then the algorithm is trained on *k-1* folds with one held back and tested on the held back fold. Repeatedly, each fold of the dataset will be given a chance to be the held back test set. After all these, you can summarize using the mean and std of such *k* different performance scores.
      
-   - Performance Metrics
+   - Performance Metrics <br />
    Choice of metrics influence how the performance of ML algorithms is measure and compared, as it represents how you weight the importance of different characteristics in the output results and ultimate choice of which algorithm to choose.
      - For Classification Problem
        - Classification Accuracy
