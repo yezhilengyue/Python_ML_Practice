@@ -18,19 +18,25 @@ Overall, when given a new ML project, the workflow could be as following:
 2. **Summarize data**
   Use descriptive statistics and visualization techniques to get a grasp of data. 
    - Descriptive Statistics <br />
-data dimension, type, attribute features (count, mean, std, min/max, percentiles), class categories, correlations between attributes, skew of univariate distributions
-   - Visualization
-  ⋅⋅⋅univariate plots(histograms, density plot, boxplot), multivariate plots(correlation matrix plot, scatter plot matrix)
+     data dimension, type, attribute features (count, mean, std, min/max, percentiles), class categories, correlations between attributes, skew of univariate distributions
+     
+   - Visualization <br />
+     univariate plots(histograms, density plot, boxplot), multivariate plots(correlation matrix plot, scatter plot matrix)
 
 3. **Data preprocessing [Incompleted]**
   The reason for preprocessing data is that different algorithms make different assumptions about data requiring different transformation. Here are some common processing techniques:
-  * Rescaling
-    To limit varying attributes ranges all between 0 and 1. 
-            
-  * Standardization
-  * Normalization
-  * Binarization
-  
+   - Transformation
+     - Rescaling <br />
+       To limit varying attributes ranges all between 0 and 1. Useful for weight-inputs regression/neural networks and kNN.
+          
+     - Standardization <br />
+       To transform attributes with a Gaussian distribution to a standard Gaussian distribution (0 mean and 1 std). Useful for linear/logistic regression and LDA
+     
+   - Normalization <br />
+     To rescaling each observation (row) to have a length of 1 (called a unit norm or a vector with the length of 1 in linear algebra). Useful for sparse dataset with varying attribute scales, weight-input neural network and kNN
+   
+   - Binarization <br />
+     To transform data using a binary threshold.(1 for above threshold and 0 for below threshold)
 
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
