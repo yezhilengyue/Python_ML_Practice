@@ -39,10 +39,10 @@ Overall, when given a new ML project, the workflow could be as following:
        To transform data using a binary threshold.(1 for above threshold and 0 for below threshold)
      
    - Feature Selection <br />
-     Irrelevant or partially relevant features can negatively impact model performance, such as decreasing the accuracy of many models. Feature Selection is to select features that contribute most to the prediction variable or output in which you are interested. It can help reduce overfiting, improve accuracy, reduce training time. Here are some common processing techniques: <br />
-
-     - Statistical Test Selection with *chi-2* <br />
+     Irrelevant or partially relevant features can negatively impact model performance, such as decreasing the accuracy of many models. Feature Selection is to select features that contribute most to the prediction variable or output in which you are interested. It can help reduce overfiting, improve accuracy, reduce training time. Here are some common processing techniques:
+     - Statistical Test Selection with *chi-2* <br />
        To select those features that have the strongest relationship with output variable 
+       
      - Recursive Feature Elimination (RFE) <br />  
        To recursively removing attributes and building a model on those attributes that remain.
      - Principal Component Analysis (PCA) <br />
