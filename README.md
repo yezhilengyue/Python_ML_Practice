@@ -1,6 +1,6 @@
 # Python_ML_Practice
 
-These are my self-learning ML practice projects using Python(sklearn) following the instruction of "Machine Learning Mastery With Python BY Jason Brownlee".
+  These are my self-learning ML practice projects using Python(sklearn) following the instruction of "Machine Learning Mastery With Python BY Jason Brownlee".
 Gnerally there are two parts in this repository. The first one is mainly about ML basics such as loading file and describing data. In this README file, basics exercises are on Pima Indians onset of diabetes dataset.  The second part is about three comprehensive ML projects on some well-known dataset using the basic knowledge in the first part. The details can be found using links below.
 
 
@@ -25,21 +25,22 @@ Overall, when given a new ML project, the workflow could be as following:
 
 3. **Data preprocessing [Incompleted]**
    - Transformation <br />
-   The reason for preprocessing data is that different algorithms make different assumptions about data requiring different transformation. Here are some common processing techniques:
+       The reason for preprocessing data is that different algorithms make different assumptions about data requiring different transformation. Here are some common processing techniques:
      - Rescaling <br />
-     To limit varying attributes ranges all between 0 and 1. Useful for weight-inputs regression/neural networks and kNN.
+       To limit varying attributes ranges all between 0 and 1. Useful for weight-inputs regression/neural networks and kNN.
           
      - Standardization <br />
-     To transform attributes with a Gaussian distribution to a standard Gaussian distribution (0 mean and 1 std). Useful for linear/logistic regression and LDA
+       To transform attributes with a Gaussian distribution to a standard Gaussian distribution (0 mean and 1 std). Useful for linear/logistic regression and LDA
      
      - Normalization <br />
-     To rescaling each observation (row) to have a length of 1 (called a unit norm or a vector with the length of 1 in linear algebra). Useful for sparse dataset with varying attribute scales, weight-input neural network and kNN
+       To rescaling each observation (row) to have a length of 1 (called a unit norm or a vector with the length of 1 in linear algebra). Useful for sparse dataset with varying attribute scales, weight-input neural network and kNN
    
      - Binarization <br />
-     To transform data using a binary threshold.(1 for above threshold and 0 for below threshold)
+       To transform data using a binary threshold.(1 for above threshold and 0 for below threshold)
      
    - Feature Selection <br />
-   Irrelevant or partially relevant features can negatively impact model performance, such as decreasing the accuracy of many models. Feature Selection is to select features that contribute most to the prediction variable or output in which you are interested. It can help reduce overfiting, improve accuracy, reduce training time. Here are some common processing techniques: <br />
+     Irrelevant or partially relevant features can negatively impact model performance, such as decreasing the accuracy of many models. Feature Selection is to select features that contribute most to the prediction variable or output in which you are interested. It can help reduce overfiting, improve accuracy, reduce training time. Here are some common processing techniques: <br />
+
      - Statistical Test Selection with *chi-2* <br />
      To select those features that have the strongest relationship with output variable
      
