@@ -45,6 +45,7 @@ Overall, when given a new ML project, the workflow could be as following:
        
      - Recursive Feature Elimination (RFE) <br />  
        To recursively removing attributes and building a model on those attributes that remain.
+       
      - Principal Component Analysis (PCA) <br />
        A kind of data reduction technique. It uses linear algebra to transform the dataset into a compressed form and choose the number of dimensions or principal components in the transformed result.
      
@@ -53,10 +54,10 @@ Overall, when given a new ML project, the workflow could be as following:
 
 4. **Algorithm Evaluation**
    - Separate train/test dataset (Resampling) <br />
-   In most cases, *k-fold* Cross Validation technique (e.g. k = 3, 5 or 10) will be used to estimate algorithm performance with less variance. At first, the dataset will be splited into *k* parts. Then the algorithm is trained on *k-1* folds with one held back and tested on the held back fold. Repeatedly, each fold of the dataset will be given a chance to be the held back test set. After all these, you can summarize using the mean and std of such *k* different performance scores.
+     In most cases, *k-fold* Cross Validation technique (e.g. k = 3, 5 or 10) will be used to estimate algorithm performance with less variance. At first, the dataset will be splited into *k* parts. Then the algorithm is trained on *k-1* folds with one held back and tested on the held back fold. Repeatedly, each fold of the dataset will be given a chance to be the held back test set. After all these, you can summarize using the mean and std of such *k* different performance scores.
      
    - Performance Metrics <br />
-   Choice of metrics influence how the performance of ML algorithms is measure and compared, as it represents how you weight the importance of different characteristics in the output results and ultimate choice of which algorithm to choose.
+     Choice of metrics influence how the performance of ML algorithms is measure and compared, as it represents how you weight the importance of different characteristics in the output results and ultimate choice of which algorithm to choose.
      - For Classification Problem
        - Classification Accuracy
        - Logorithmic Loss
