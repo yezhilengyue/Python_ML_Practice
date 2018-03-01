@@ -59,9 +59,11 @@ Overall, when given a new ML project, the workflow could be as following:
    - Performance Metrics <br />
      Choice of metrics influence how the performance of ML algorithms is measure and compared, as it represents how you weight the importance of different characteristics in the output results and ultimate choice of which algorithm to choose.
      - For Classification Problem
-       - Classification Accuracy
-       - Logorithmic Loss
-       - Area Under ROC Curve
+       1) Classification Accuracy
+          The ratio of the number of correct predictions and the numberof all predictions. Only suitable for equal number of obsevations in each class, and all predictions and prediction errors are *equally important*.
+       
+       2) Logorithmic Loss
+       3) Area Under ROC Curve
    
 
 5. Create a new Pull Request
