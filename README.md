@@ -62,11 +62,51 @@ Overall, when given a new ML project, the workflow could be as following:
        1) Classification Accuracy  <br />
           Classification Accuracy is the ratio of the number of correct predictions and the numberof all predictions. Only suitable for equal number of obsevations in each class, and all predictions and prediction errors are *equally important*.
        
-       2) Logorithmic Loss
-          Logorithmic Loss
+       2) Logorithmic Loss  <br />
+          Logorithmic Loss is to evaluate the predictions of probabilities of membership to a given class. Corrected or incorrected prediction errors will be rewarded/punished proportionally to the comfidence of the prediction. Smaller logloss is better with 0 for a perfect logloss.
        
-       3) Area Under ROC Curve
-   
+       3) Area Under ROC Curve (AUC) <br />
+          AUC is used to evaluate binary classification problem, representing a model's ability to discriminate between positive and negative classes. (1 for perfect prediction. 0.5 for as good as random.)  <br />
+          ROC can be broken down into sensitivity (true positive rate) and specificity (true negative rate)
+          
+       4) Confusion Matrix <br />
+          Confusion Matrix is representation of models' classes accuracy. Generally, the majority of the predictions fall on the diagonal line of the matrix.
+          
+       5) Classification Report <br />
+          A scikit-learn lib provided classification report including precision, recall and F1-score.
+          
+     - For Regression Problem
+       1) Mean Absolute Error (MAE) L1-norm <br />
+          MAE is the sum of the absolute differences between predictions and actual values.
+       
+       2) Mean Squared Error (MSE) L2-norm <br />
+          MSE is the sum of square root of the mean squared error
+          
+       3) R^2 <br />
+          R^2 is an indication of the goodness of fit of a set of predictions to the actual values range between 0 (non-fit) and 1 (perfiect fit). Statistically, it is called coefficient of determination
+          
+       
+ 
+    - Spot-Checking Algorithm <br />
+      Spot-Checking is a way to discover which algs perform well on ML problem. Since we do not know which algs will work best on our dataset, we can make a guess and further dig deeper. Here are some common algs:
+      - Classification
+        - Logistic Regression (Linear)
+        - Linear Discriminant Analysis (Linear)
+        - k-Nearest Neighbors (Non-linear)
+        - Naive Bayes (Non-linear)
+        - Classification and Regression (Non-linear)
+        - Support Vector Machine (Non-linear)
+        
+      - Regression
+        - Linear Regression (Linear)
+        - Ridge Regression (Linear)
+        - LASSO Linear Regression (Linear)
+        - Elastic Net Regression (Linear)
+        - Naive Bayes (Non-linear)
+        - Classification and Regression (Non-linear)
+        - Support Vector Machine (Non-linear)
+        
+
 
 5. Create a new Pull Request
 
