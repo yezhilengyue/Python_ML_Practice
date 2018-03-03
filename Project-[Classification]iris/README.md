@@ -1,7 +1,7 @@
 # Iris Flower Classification
 Iris flower dataset perfhaps is the best known data set in the classification literature. It aims to classify iris flowers among three species (setosa, versicolor or virginica) based on measurements of length and width of sepals and petals.
 
-## 1. Summarize the Dataset with Statistics and Visualization
+## 1. Summary with Statistics and Visualization
 When come across new dataset, we can take a look at its dimensions, first several rows, attribute type, statistical summary of each attribute and class distribution.
 ```
 print(data.shape)
@@ -17,7 +17,13 @@ After having a basic idea about the data, let's dig deeper through visualization
    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/boxplots.png)
    
    - **Histogram** <br />
-   It looks like perhaps two of the input variables have a Gaussian distribution
-   ![lt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/histgram.png)
+   It looks like perhaps two of the input variables (`sepal-length` and `sepal-width`) have a Gaussian distribution
+   ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/histgram.png)
    
-   - **Histogram**
+   - **Scatter plot matrix**
+   Take a look at the interactions between the variables. It shows that there is a high correlation and a predictable relationship.
+   ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/scatter_plots.png)
+   
+   
+   
+## 2. Algorithms Evaluationg   
