@@ -12,4 +12,9 @@ print(data.groupby('class').size())
 ```
 In summary, in this iris dataset, we have 150 instances and 5 attributes. Each category has 50 instances.
 
-After having a basic idea about the data, let's dig deeper through visualizations. Generally, univariate plots help to better understand each attribute, while multivariate plots is good to understand the relationships between attributes.
+After having a basic idea about the data, let's dig deeper through visualizations. Generally, univariate plots help to better understand each attribute, while multivariate plots is good to understand the relationships between attributes. <br />
+   - Box plots <br />
+   ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/boxplots.png)
+   
+   - Histogram
+   
