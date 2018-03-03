@@ -50,4 +50,27 @@ After having a basic idea about the data, let's dig deeper through visualization
    ```
    It looks that KNN achieves the highest accuracy score. Draw this result using boxplot.
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/algorithm_comparison.png)
+   
+   
+   - **Make Prediction**   
+   Since kNN is the most accurate model for iris classification problem, we run the KNN model directly on the validation set and summarize the results as a final accuracy score, a confusion matrix and a classification report.
+ ```
+ 0.9  
+ ```
+  The accuracy is 0.9.
+```
+   [[ 7 0 0] 
+    [ 0 11 1] 
+    [ 0 2 9]] 
+```
+ The confusion matrix shows that there are 3 errors made
+```
+                     precision    recall  f1-score   support
+
+        Iris-setosa       1.00      1.00      1.00         7
+    Iris-versicolor       0.85      0.92      0.88        12
+     Iris-virginica       0.90      0.82      0.86        11
+
+        avg / total       0.90      0.90      0.90        30
+ ```
     
