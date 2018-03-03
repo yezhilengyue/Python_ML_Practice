@@ -12,10 +12,10 @@ Gnerally there are two parts in this repository. The first one is mainly about M
 ## Getting Started with Basics
 
 Overall, when given a new ML project, the workflow could be as following:
-1. **Define problem**
+1. **Define problem** <br />
   Investigate and characterize the problem and clarify the project goal.
 
-2. **Summarize data**
+2. **Summarize data** <br />
   Use descriptive statistics and visualization techniques to get a grasp of data. 
    - Descriptive Statistics <br />
      data dimension, type, attribute features (count, mean, std, min/max, percentiles), class categories, correlations between attributes, skew of univariate distributions
@@ -124,10 +124,19 @@ Overall, when given a new ML project, the workflow could be as following:
    - Params Tuning <br />
      Algs tuning is the final step in AML before finalizing model. In scikit-learn, there are two simple methods for params tuning:
      
-     1) Grid Search Param Tuning
-     
-     2) Random Search Param Tuning
-
+     1) Grid Search Param Tuning <br />
+        Methodically build and evaluate a model for each combination of algorithm parameters specified in a grid
+        
+     2) Random Search Param Tuning <br />
+        Sample algorithm parameters from a random distribution (i.e. uniform) for a fixed number of iterations. A model is constructed and evaluated for each combination of parameters chosen.
+        
+        
+        
+6. **Present results** <br />
+   The final part includes:
+   - Predictions on validation dataset
+   - Create standalone model on entire training dataset
+   - Save model for later use
 
 ## Acknowledgments
 
