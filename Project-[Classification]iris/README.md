@@ -10,11 +10,14 @@ print(data.dtype)
 print(data.describe())
 print(data.groupby('class').size())
 ```
-In summary, in this iris dataset, we have 150 instances and 5 attributes. Each category has 50 instances.
+In summary, in this iris dataset, we have 150 instances, 5 attributes (`sepal-length`, `sepal-width`, `petal-length`, `petal-width` and `class`) and 3 classes (`sepal-length`, `Iris-versicolor` and `Iris-virginica`). Among these 5 attributes, `sepal-length`, `sepal-width`, `petal-length` and `petal-width`  are numeric while `class` attribute is string data. Besides, in each category there are 50 instances.
 
 After having a basic idea about the data, let's dig deeper through visualizations. Generally, univariate plots help to better understand each attribute, while multivariate plots is good to understand the relationships between attributes. <br />
-   - Box plots <br />
+   - **Box plots** <br />
    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/boxplots.png)
    
-   - Histogram
+   - **Histogram** <br />
+   It looks like perhaps two of the input variables have a Gaussian distribution
+   ![lt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/histgram.png)
    
+   - **Histogram**
