@@ -3,4 +3,6 @@ Iris flower dataset perfhaps is the best known data set in the classification li
 
 ## 1. Summarize the Dataset
 When come across new dataset, we can take a look at its dimensions, first several rows, attribute type, statistical summary of each attribute and class distribution.
-`print(data.shape)`
+```
+print(data.shape)
+```
