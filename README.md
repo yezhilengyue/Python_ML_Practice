@@ -108,7 +108,25 @@ Overall, when given a new ML project, the workflow could be as following:
         
 
 
-5. Create a new Pull Request
+5. **Improve results**
+   - Ensemble <br />
+     Ensemble learning helps improve machine learning results by combining several models. This approach allows the production of better predictive performance compared to a single model.
+     
+     1) Bagging <br />
+        Bagging tries to implement similar learners on small sample populations and then takes a mean of all the predictions.
+        
+     2) Boosting <br/>
+        Boosting is an iterative technique which adjust the weight of an observation based on the last classification. If an observation was classified incorrectly, it tries to increase the weight of this observation and vice versa. Boosting in general decreases the bias error and builds strong predictive models. However, they may sometimes over fit on the training data.
+        
+     3) Stacking <br />
+        Here we use a learner to combine output from different learners. This can lead to decrease in either bias or variance error depending on the combining learner we use.
+   
+   - Params Tuning <br />
+     Algs tuning is the final step in AML before finalizing model. In scikit-learn, there are two simple methods for params tuning:
+     
+     1) Grid Search Param Tuning
+     
+     2) Random Search Param Tuning
 
 
 ## Acknowledgments
