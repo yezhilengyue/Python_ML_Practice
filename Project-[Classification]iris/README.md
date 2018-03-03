@@ -26,4 +26,28 @@ After having a basic idea about the data, let's dig deeper through visualization
    
    
    
-## 2. Algorithms Evaluationg   
+## 2. Algorithms Evaluationg
+   Now it's time to create model and make prediction on unseen data.
+   - **Separate dataset and Test**
+   In this problem, we will split the loaded dataset into two, 80% of which we will use to train our models and 20% that we will hold back as a validation datas. Also, it will be a 10-fold cross validation to estimate accuracy.
+   
+   - **Build models**
+   From the plots, we deduce that some of the classes are partially linearly separable in some dimensions. Let’s evaluate six different algorithms: <br />
+     1) Logistic Regression (LR)
+     2) Linear Discriminant Analysis (LDA)
+     3) k-Nearest Neighbors (KNN).
+     4) Classification and Regression Trees (CART).
+     5) Gaussian Naive Bayes (NB).
+     6) Support Vector Machines (SVM).
+   *We reset the random number seed before each run to ensure that the evaluation of each algorithm is performed using exactly the same data splits.*
+   ```
+    LR: 0.966667 (std: 0.040825)
+    LDA: 0.975000 (std: 0.038188)
+    KNN: 0.983333 (std: 0.033333) **
+    CART: 0.975000 (std: 0.038188)
+    NB: 0.975000 (std: 0.053359)
+    SVM: 0.981667 (std: 0.025000)
+   ```
+   It looks that KNN achieves the highest accuracy score. Draw this result using boxplot.
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification%5Diris/algorithm_comparison.png)
+    
