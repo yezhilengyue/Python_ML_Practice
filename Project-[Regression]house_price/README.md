@@ -126,4 +126,7 @@ And the results:
   - Visualization report
   First, let's take a loot at some unimodal Data Visualizations.
     1) Histograms
-    
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BU%5Dhistograms.png)
+    2) Density
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BU%5Dline_graph.png)
+    From the graph, we can see that some attributes have possible exponential and bimodal distributions. It also looks like ```NOX```, ```RM``` and ```LSTAT``` may be skewed Gaussian distributions, which might be helpful later with transforms.
