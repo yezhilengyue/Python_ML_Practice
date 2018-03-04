@@ -141,8 +141,9 @@ And the results:
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/corr_matrix.png)
     
  
-## Baseline Algs
-In this problem, we will evaluate algorithms using the Mean Squared Error (MSE) metric with 10-fold cross validation. Six algs with default settings will be checked include Linear Regression (LR), Lasso Regression (LASSO), ElasticNet (EN), Classification and Regression Trees (CART), Support Vector Regression (SVR) and k-Nearest Neighbors (KNN). <br />
+## Evaluate Algorithms
+   - Evaludation Baseline
+In this problem, we will evaluate algorithms using the **Mean Squared Error (MSE)** metric with **10-fold cross validation**. Six algs with default settings will be checked include Linear Regression (LR), Lasso Regression (LASSO), ElasticNet (EN), Classification and Regression Trees (CART), Support Vector Regression (SVR) and k-Nearest Neighbors (KNN). <br />
 Here is the testing results:
 ```
    LR: -21.3798557267 (std: 9.41426365698) 
@@ -154,10 +155,71 @@ Here is the testing results:
 ```
 From above, we can see that LR has the lowest MSE, followed closely by CART. Let's observe it more clearly by looking at the distribution of scores across all cross validation folds by algorithm:
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/algs_cmpsn.png)
-It looks that there is a tighter distribution of scores for CART.
+It looks that there is a tighter distribution of scores for CART. Surprisingly, kNN' score is very low. We uspect that the differing scales of the raw data may be negatively impacting the skill of some of the algorithms.
 <br />
+
+   - Data Wrangling
 Generally, there are 3 type of data wrangling techniques:
    - **Feature selection** and removing the most correlated attributes.
    - **Normalizing** the dataset to reduce the effect of differing scales.
    - **Standardizing** the dataset to reduce the effects of differing distributions.
-    
+At the meantime, to avoid data leakage, we decide to use pipelines that standardize the data and build the model for each fold in the cross validation test harness.
+```
+#   ScaledLR: -21.3798557267 (9.41426365698)
+#   ScaledLASSO: -26.6073135577 (8.97876148589)
+#   ScaledEN: -27.9323721581 (10.5874904901)
+#   ScaledKNN: -20.1076204878 (12.3769491508) 
+#   ScaledCART: -24.4931573171 (10.4662755609)
+#   ScaledSVR: -29.6330855003 (17.0091860524)
+```
+
+![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BScaled%5Dalgs_cmpsn.png)
+We can see that KNN has both a tight distribution of error and has the lowest score. Also, from the plot of standardized algorithm distribution scores, we know that KNN has both a tight distribution of error and has the lowest score. <br />
+Therefore, we can focus on improving kNN algorithms.
+
+# Improvement
+  - Params tuning
+  The default value for the number of neighbors in KNN is 7. We try to add k values from 1 to 21.
+  ```
+Best: -18.172137 using {'n_neighbors': 3}
+
+-20.169640 (14.986904) with: {'n_neighbors': 1} 
+-18.109304 (12.880861) with: {'n_neighbors': 3} 
+-20.063115 (12.138331) with: {'n_neighbors': 5} 
+-20.514297 (12.278136) with: {'n_neighbors': 7} 
+-20.319536 (11.554509) with: {'n_neighbors': 9} 
+-20.963145 (11.540907) with: {'n_neighbors': 11} 
+-21.099040 (11.870962) with: {'n_neighbors': 13} 
+-21.506843 (11.468311) with: {'n_neighbors': 15} 
+-22.739137 (11.499596) with: {'n_neighbors': 17} 
+-23.829011 (11.277558) with: {'n_neighbors': 19} 
+-24.320892 (11.849667) with: {'n_neighbors': 21}
+  ```
+The best for k (n neighbors) is 3 with a mean squared error of -18.172137.
+
+  - Ensemble
+Another way that we can improve the performance of algorithms on this problem is by using ensemble methods. Here we will evaluate four different ensemble machine learning algorithms, two boosting (AdaBoost and Gradient Boosting) and two bagging methods (Random Forests and Extra Trees):
+```
+   ScaledAB: -14.957611 (6.579588)
+   ScaledGBM: -10.054631 (4.522576)
+   ScaledRF: -13.718030 (7.982746)
+   ScaledET: -10.530828 (6.818533)
+```
+![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5Bscaled%5Dknn_ensemble.png)
+It looks like Gradient Boosting has a better mean score, it also looks like Extra Trees has a similar distribution and perhaps a better median score. We can probably do better, given that the ensemble techniques used the default parameters. Then we will look at tuning the Gradient Boosting to further lift the performance using grid search. <br />
+Often, the larger the number of boosting stages, the better the performance but the longer the training time. The default number of boosting stages to perform (n estimators) is 100. 
+```
+Best: -9.35647101741 using {'n_estimators': 400}
+
+   -10.812167 (4.724394) with: {'n_estimators': 50}
+   -10.040857 (4.441758) with: {'n_estimators': 100}
+   -9.694096 (4.275762) with: {'n_estimators': 150}
+   -9.539706 (4.270637) with: {'n_estimators': 200}
+   -9.448764 (4.262603) with: {'n_estimators': 250}
+   -9.429946 (4.273791) with: {'n_estimators': 300}
+   -9.369824 (4.254108) with: {'n_estimators': 350}
+   -9.356471 (4.267837) with: {'n_estimators': 400}
+```
+We can see that the best configuration was n estimators=400 with a mean squared error of -9.356471, about 0.65 units better than the untuned method.
+
+
