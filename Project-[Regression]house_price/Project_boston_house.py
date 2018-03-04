@@ -70,17 +70,66 @@ print(data.describe())
 # to summarize the distribution of each attribute.
 
 set_option('precision', 2)
-print(data.corr(method = 'pearson'))
-# to look at the correlation between all of the numeric attributes.
-# We can see that many attributes have a strong correlation, for example:
-#  NOX and INDUS with 0.77.
-#  DIS and INDUS with -0.71.   
-#  TAX and INDUS with 0.72.   
-#  AGE and NOX with 0.73.
-#  DIS and NOX with -0.78.
+pearson = data.corr(method = 'pearson')
+# assume target attr is the last, then remove corr with itself
+corr_with_target = pearson.ix[-1][:-1]
+# attributes sorted from the most predictive
+predictivity = corr_with_target.sort_values(ascending=False)
+'''
+RM         0.695360
+ZN         0.360445
+B          0.333461
+DIS        0.249929
+CHAS       0.175260
+AGE       -0.376955
+RAD       -0.381626
+CRIM      -0.385832
+NOX       -0.427321
+TAX       -0.468536
+INDUS     -0.483725
+PTRATIO   -0.507787
+LSTAT     -0.737663
+Name: MEDV, dtype: float64
+'''
 
+# To find the attribute with strongest correlation with output, it would be better to sort the correlations by the absolute value:
 
+'''
+>>> corr_with_target[abs(corr_with_target).argsort()[::-1]]
+LSTAT     -0.737663
+RM         0.695360
+PTRATIO   -0.507787
+INDUS     -0.483725
+TAX       -0.468536
+NOX       -0.427321
+CRIM      -0.385832
+RAD       -0.381626
+AGE       -0.376955
+ZN         0.360445
+B          0.333461
+DIS        0.249929
+CHAS       0.175260
+Name: MEDV, dtype: float64
+'''
 
+# It might be interesting to select some strong correlations between attribute pairs.
+attrs = pearson.iloc[:-1,:-1] # all except target
+# only important correlations and not auto-correlations
+threshold = 0.5
+# {('LSTAT', 'TAX'): 0.543993, ('INDUS', 'RAD'): 0.595129, ...
+important_corrs = (attrs[abs(attrs) > threshold][attrs != 1.0]).unstack().dropna().to_dict()
+#     attribute pair  correlation
+# 0     (AGE, INDUS)     0.644779
+# 1     (INDUS, RAD)     0.595129
+# ...
+
+unique_important_corrs = data.DataFrame(
+    list(set([(tuple(sorted(key)), important_corrs[key]) \
+    for key in important_corrs])), columns=['attribute pair', 'correlation'])
+
+# sorted by absolute value
+unique_important_corrs = unique_important_corrs.ix[
+    abs(unique_important_corrs['correlation']).argsort()[::-1]]
 
 
 ## Data visualization
