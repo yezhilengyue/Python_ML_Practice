@@ -55,6 +55,75 @@ LSTAT     -0.737663
 Name: MEDV, dtype: float64
   ```
   To find the attribute with strongest correlation with output, it would be better to sort the correlations by the absolute value:
-  
-  
+  ```
+>>> corr_with_target[abs(corr_with_target).argsort()[::-1]]
+LSTAT     -0.737663
+RM         0.695360
+PTRATIO   -0.507787
+INDUS     -0.483725
+TAX       -0.468536
+NOX       -0.427321
+CRIM      -0.388305
+RAD       -0.381626
+AGE       -0.376955
+ZN         0.360445
+B          0.333461
+DIS        0.249929
+CHAS       0.175260
+Name: MEDV, dtype: float64
+  ```
+This shows that ```LSTAT``` has a good negative correlation with the output variable MEDV with a value of -0.737663.  
+Then let's dig deeper at important correlations between input attributes. It might be interesting to select some strong correlations between attribute pairs.
+
+```
+# all except target
+attrs = pearson.iloc[:-1,:-1]
+# only important correlations and not auto-correlations
+threshold = 0.5
+important_corrs = (attrs[abs(attrs) > threshold][attrs != 1.0]).unstack().dropna().to_dict()
+```
+    attribute pair  correlation
+0     (AGE, INDUS)     0.644779
+1     (INDUS, RAD)     0.595129
+
+```
+unique_important_corrs = data.DataFrame(
+    list(set([(tuple(sorted(key)), important_corrs[key]) \
+    for key in important_corrs])), columns=['attribute pair', 'correlation'])
+# sorted by absolute value
+unique_important_corrs = unique_important_corrs.ix[
+    abs(unique_important_corrs['correlation']).argsort()[::-1]]
+```
+And the results:
+```
+>>> unique_important_corrs
+    attribute pair  correlation
+9       (RAD, TAX)     0.910228
+15      (DIS, NOX)    -0.769230
+10    (INDUS, NOX)     0.763651
+18      (AGE, DIS)    -0.747881
+11      (AGE, NOX)     0.731470
+6     (INDUS, TAX)     0.720760
+17    (DIS, INDUS)    -0.708027
+21      (NOX, TAX)     0.668023
+2        (DIS, ZN)     0.664408
+7     (AGE, INDUS)     0.644779
+23     (CRIM, RAD)     0.625505
+3      (LSTAT, RM)    -0.613808
+5       (NOX, RAD)     0.611441
+8   (INDUS, LSTAT)     0.603800
+19    (AGE, LSTAT)     0.602339
+22    (INDUS, RAD)     0.595129
+12    (LSTAT, NOX)     0.590879
+0      (CRIM, TAX)     0.582764
+16       (AGE, ZN)    -0.569537
+14    (LSTAT, TAX)     0.543993
+20      (DIS, TAX)    -0.534432
+13     (INDUS, ZN)    -0.533828
+4        (NOX, ZN)    -0.516604
+1       (AGE, TAX)     0.506456
+```
   - Visualization report
+  First, let's take a loot at some unimodal Data Visualizations.
+    1) Histograms
+    
