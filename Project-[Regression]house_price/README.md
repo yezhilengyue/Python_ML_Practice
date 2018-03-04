@@ -13,18 +13,10 @@ Some useful python packages:
   - Statistical report
   ```
   print(dataset.shape)
-  ```
-  Here we have e 506 instances to work with and can confirm the data has 14 attributes including the output attribute MEDV.
-  ```
   print(dataset.dtypes)
-  ```
-  We can see that all of the attributes are numeric, all real values (float) except ```CHAS``` and ```RAD``` as integers
-  ```
   print(dataset.head(20))
-  ```
-  Take a peek at the first 20 rows of the data
-  ```
   print(dataset.describe())
   ```
+  Here we have e 506 instances to work with and can confirm the data has 14 attributes including the output attribute MEDV. Besides, all of the attributes are numeric, all real values (float) except ```CHAS``` and ```RAD``` as integers.
   
   - Visualization report
