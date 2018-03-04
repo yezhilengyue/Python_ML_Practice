@@ -133,12 +133,12 @@ And the results:
     3) Boxplot
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BU%5Dbox_plots.png)
     
-    5) Correlation matrix
-    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/corr_matrix.png)
-    
   Then, we take a look at visualizations of interactions between variables.
     4) Scatter plot matrix
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BM%5Dscatter_plots.png)
+    
+    5) Correlation matrix
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/corr_matrix.png)
     
   
   
