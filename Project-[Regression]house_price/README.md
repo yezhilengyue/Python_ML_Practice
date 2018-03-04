@@ -139,6 +139,7 @@ And the results:
     
     5) Correlation matrix
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/corr_matrix.png)
+  
     
  
 ## Evaluate Algorithms
