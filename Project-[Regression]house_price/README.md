@@ -124,9 +124,40 @@ And the results:
 1       (AGE, TAX)     0.506456
 ```
   - Visualization report
-  First, let's take a loot at some unimodal Data Visualizations.
+  First, let's take a loot at some unimodal Data Visualizations. 
     1) Histograms
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BU%5Dhistograms.png)
     2) Density
     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BU%5Dline_graph.png)
     From the graph, we can see that some attributes have possible exponential and bimodal distributions. It also looks like ```NOX```, ```RM``` and ```LSTAT``` may be skewed Gaussian distributions, which might be helpful later with transforms.
+    3) Boxplot
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BU%5Dbox_plots.png)
+    
+  Then, we take a look at visualizations of interactions between variables.
+    4) Scatter plot matrix
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/%5BM%5Dscatter_plots.png)
+    
+    5) Correlation matrix
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/corr_matrix.png)
+    
+ 
+## Baseline Algs
+In this problem, we will evaluate algorithms using the Mean Squared Error (MSE) metric with 10-fold cross validation. Six algs with default settings will be checked include Linear Regression (LR), Lasso Regression (LASSO), ElasticNet (EN), Classification and Regression Trees (CART), Support Vector Regression (SVR) and k-Nearest Neighbors (KNN). <br />
+Here is the testing results:
+```
+   LR: -21.3798557267 (std: 9.41426365698) 
+   LASSO: -26.4235611084 (std: 11.6511099158)
+   EN: -27.5022593507 (std: 12.3050222641)
+   KNN: -41.8964883902 (std: 13.9016881498)
+   CART: -22.9675067073 (std: 10.9475148015)
+   SVR: -85.5183418393 (std: 31.9947982318) 
+```
+From above, we can see that LR has the lowest MSE, followed closely by CART. Let's observe it more clearly by looking at the distribution of scores across all cross validation folds by algorithm:
+    ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BRegression%5Dhouse_price/algs_cmpsn.png)
+It looks that there is a tighter distribution of scores for CART.
+<br />
+Generally, there are 3 type of data wrangling techniques:
+   - **Feature selection** and removing the most correlated attributes.
+   - **Normalizing** the dataset to reduce the effect of differing scales.
+   - **Standardizing** the dataset to reduce the effects of differing distributions.
+    
