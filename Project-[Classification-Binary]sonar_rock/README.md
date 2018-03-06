@@ -30,5 +30,93 @@ Using above command, we get a statistical glimps of data. There are 208 instance
      We can see that the color around diagonal are much yellower which means that strong positive correlations between neighboring attributes. Also there is a part with dark purple around the center of the graph representing for negative correlations. "This makes sense if the order of the attributes refers to the angle of sensors for the sonar chirp."
      
      
+## Evaluation Algorithm
+   - Split-out validation dataset, Test options and Evaluations metric
+We will use a validation hold-out set holding back from our analysis and modeling. This is a smoke test that we can use to see if we messed up and to give us confidence on our estimates of accuracy on unseen data. Specifically, it is 80% for modeling and 20% for validation, with 10-fold cross validation on accuracy evaluation metric.
+```
+seed = 7
+
+validation_size_ratio = 0.20
+X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size = validation_size_ratio, random_state = seed)
+
+num_folds = 10
+scoring = 'accuracy'
+```
+   - Baseline
+   Create a baseline of performance on this problem and spot-check a number of different algorithms.
+     - Logistic Regression (LR)
+     - Linear Discriminant Analysis (LDA)
+     - Classification and Regression Trees (CART)
+     - Support Vector Machines (SVM)
+     - Gaussian Naive Bayes (NB)
+     - k-Nearest Neighbors (KNN).
+     ```
+models = []
+models.append(('LR', LogisticRegression())) 
+models.append(('LDA', LinearDiscriminantAnalysis())) 
+models.append(('KNN', KNeighborsClassifier())) 
+models.append(('CART', DecisionTreeClassifier())) 
+models.append(('NB', GaussianNB())) 
+models.append(('SVM', SVC()))
+     ```
+     With all default tuning parameters, we compare these algorithms by calculating the mean and standard deviation of accuracy for each algorithm.
+     ```
+LR: 0.782721 (std: 0.093796)
+LDA: 0.746324 (std: 0.117854)
+KNN: 0.808088 (std: 0.067507)
+CART: 0.740809 (std: 0.118120)
+NB: 0.648897 (std: 0.141868)
+SVM: 0.608824 (std: 0.118656)
+     ```
+     The results suggest that both Logistic Regression and k-Nearest Neighbors may be worth further study. Besides the mean accuracy values, let's take a look at the distribution of accuracy values calculated across cross-validation folds using box plots.
+     ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/algs_cmpsn.png)
+     The results show a tight distribution for KNN which is encouraging, suggesting low variance. The poor results for SVM are surprising.<br />
+     We guess that this is probably credit to the varied distribution of the attributes which have an effect on the accuracy of algorithms such as SVM. Therefore, in the next step, we repeat this spot-check with standardized data.
+
      
-     
+    - Data transformation (Standardization)
+    Suspecting negative effect of varied distributions of the raw data on some algorithm, we standardize the training data by setting each attribute with 0 mean and 1 standard deviation.<br />
+    Also, to avoid data leakage, we use piplelines to standardize data and build model for each fold in the cross validation test.
+```
+pipelines = []
+pipelines.append(('ScaledLR', Pipeline([('Scaler', StandardScaler()),('LR', LogisticRegression())])))
+pipelines.append(('ScaledLDA', Pipeline([('Scaler', StandardScaler()),('LDA', LinearDiscriminantAnalysis())])))
+pipelines.append(('ScaledKNN', Pipeline([('Scaler', StandardScaler()),('KNN', KNeighborsClassifier())])))
+pipelines.append(('ScaledCART', Pipeline([('Scaler', StandardScaler()),('CART', DecisionTreeClassifier())])))
+pipelines.append(('ScaledNB', Pipeline([('Scaler', StandardScaler()),('NB', GaussianNB())])))
+pipelines.append(('ScaledSVM', Pipeline([('Scaler', StandardScaler()),('SVM', SVC())])))
+```
+   The results:
+   ```
+ScaledLR: 0.734191 (0.095885)
+ScaledLDA: 0.746324 (0.117854)
+ScaledKNN: 0.825735 (0.054511)      
+ScaledCART: 0.741176 (0.105601)
+ScaledNB: 0.648897 (0.141868)
+ScaledSVM: 0.836397 (0.088697)      
+   ```
+   Again, kNN is still doing well, even better than before. Moreover, after standardization, the performance of SVM improves a lot.
+   ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/Ensemble%5Dalgs_cmpsn.png)
+   The box plot show the promise of SVM and kNN which are worth further study with some tuning techniques.
+   
+   
+   - Algorithm Tuning
+     - Params tuning with kNN
+     Below we try all odd values of k from 1 to 21, covering the default value of 7 using grid search. Each k value is evaluated using 10-fold cross validation on the training standardized dataset.
+```
+Best: 0.849398 using {'n_neighbors': 1}
+
+0.849398 (0.059881) with: {'n_neighbors': 1}
+0.837349 (0.066303) with: {'n_neighbors': 3}
+0.837349 (0.037500) with: {'n_neighbors': 5}
+0.765060 (0.089510) with: {'n_neighbors': 7}
+0.753012 (0.086979) with: {'n_neighbors': 9}
+0.734940 (0.105836) with: {'n_neighbors': 13}
+0.710843 (0.078716) with: {'n_neighbors': 17}
+0.722892 (0.084555) with: {'n_neighbors': 19}
+0.710843 (0.108829) with: {'n_neighbors': 21}
+```
+   Interestingly, the optimal k is 1. This means that the algorithm will make predictions using the most similar instance in the training dataset alone. 
+   
+     - Params tuning with SVM
+     There are two parameters (the value of *C* and the type of kernel) of the SVM we can 
