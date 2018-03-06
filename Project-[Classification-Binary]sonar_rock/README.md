@@ -60,8 +60,7 @@ models.append(('CART', DecisionTreeClassifier()))
 models.append(('NB', GaussianNB())) 
 models.append(('SVM', SVC()))
 ```
-
-     With all default tuning parameters, we compare these algorithms by calculating the mean and standard deviation of accuracy for each algorithm. <br />
+  With all default tuning parameters, we compare these algorithms by calculating the mean and standard deviation of accuracy for each algorithm. <br />
      
 ```
 LR: 0.782721 (std: 0.093796)
@@ -71,13 +70,14 @@ CART: 0.740809 (std: 0.118120)
 NB: 0.648897 (std: 0.141868)
 SVM: 0.608824 (std: 0.118656)
 ```
-     The results suggest that both Logistic Regression and k-Nearest Neighbors may be worth further study. Besides the mean accuracy values, let's take a look at the distribution of accuracy values calculated across cross-validation folds using box plots.
+
+   The results suggest that both Logistic Regression and k-Nearest Neighbors may be worth further study. Besides the mean accuracy values, let's take a look at the distribution of accuracy values calculated across cross-validation folds using box plots.
      ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/algs_cmpsn.png)
      The results show a tight distribution for KNN which is encouraging, suggesting low variance. The poor results for SVM are surprising.<br />
      We guess that this is probably credit to the varied distribution of the attributes which have an effect on the accuracy of algorithms such as SVM. Therefore, in the next step, we repeat this spot-check with standardized data.
 
      
-    - Data transformation (Standardization)
+   - Data transformation (Standardization)
     Suspecting negative effect of varied distributions of the raw data on some algorithm, we standardize the training data by setting each attribute with 0 mean and 1 standard deviation.<br />
     Also, to avoid data leakage, we use piplelines to standardize data and build model for each fold in the cross validation test.
 ```
