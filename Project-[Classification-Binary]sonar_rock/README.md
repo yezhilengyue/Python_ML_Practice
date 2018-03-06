@@ -2,7 +2,7 @@
 This project is about predict metal or rock objects from sonar return data using Sonar Mines v.c. Rocks dataset.
 
 ## Data Analysis
-   - Statistics
+   - **Statistics** <br />
 This time we load the data without header because we notice that the class attribute (the last column) is meaningless. So we set ```data = pd.readcsv(filename, header = None)``` to avoid file loading code taking the first record as the column names.
 ```
 print(data.shape)
@@ -12,7 +12,7 @@ print(data.groupby(60).size())
 ```
 Using above command, we get a statistical glimps of data. There are 208 instances with 61 attributes including class attribute. All attributes are numeric except class attribute (object type). The data has the same range, but differing mean values. This indicates that standardization could help. Also, from the breakdown of class values, we can see that in this dataset, there are 111 mines and 97 rocks, an relatively balanced class distribution.
 
-   - Visualization
+   - **Visualization** <br />
      - Histogram
      ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/histgram.png)
      There are quite a lof Gaussian-like distributions (e.g. 37, 39) and some exponential-like distributions (e.g. 30, 48). To see it clearly, let's take a look at density plots.
@@ -31,7 +31,7 @@ Using above command, we get a statistical glimps of data. There are 208 instance
      
      
 ## Evaluation Algorithm
-   - Split-out validation dataset, Test options and Evaluations metric
+   - **Split-out validation dataset, Test options and Evaluations metric** <br />
     We will use a validation hold-out set holding back from our analysis and modeling. This is a smoke test that we can use to see if we messed up and to give us confidence on our estimates of accuracy on unseen data. Specifically, it is 80% for modeling and 20% for validation, with 10-fold cross validation on accuracy evaluation metric.
 ```
 seed = 7
@@ -43,7 +43,7 @@ num_folds = 10
 scoring = 'accuracy'
 ```
 
-   - Baseline
+   - **Baseline** <br />
    Create a baseline of performance on this problem and spot-check a number of different algorithms.
      - Logistic Regression (LR)
      - Linear Discriminant Analysis (LDA)
@@ -77,7 +77,7 @@ SVM: 0.608824 (std: 0.118656)
      We guess that this is probably credit to the varied distribution of the attributes which have an effect on the accuracy of algorithms such as SVM. Therefore, in the next step, we repeat this spot-check with standardized data.
 
      
-   - Data transformation (Standardization)
+   - **Data transformation (Standardization)** <br />
     Suspecting negative effect of varied distributions of the raw data on some algorithm, we standardize the training data by setting each attribute with 0 mean and 1 standard deviation.<br />
     Also, to avoid data leakage, we use piplelines to standardize data and build model for each fold in the cross validation test.
 ```
@@ -103,8 +103,8 @@ ScaledSVM: 0.836397 (0.088697)
    The box plot show the promise of SVM and kNN which are worth further study with some tuning techniques.
    
    
-   - Algorithm Tuning
-     - Params tuning with kNN
+   - **Algorithm Tuning** <br />
+     - Params tuning with kNN <br />
      Below we try all odd values of k from 1 to 21, covering the default value of 7 using grid search. Each k value is evaluated using 10-fold cross validation on the training standardized dataset.
 ```
 Best: 0.849398 using {'n_neighbors': 1}
@@ -121,5 +121,5 @@ Best: 0.849398 using {'n_neighbors': 1}
 ```
    Interestingly, the optimal k is 1. This means that the algorithm will make predictions using the most similar instance in the training dataset alone. 
    
-     - Params tuning with SVM
-     There are two parameters (the value of *C* and the type of kernel) of the SVM we can 
+     - Params tuning with SVM <br />
+       There are two parameters (the value of *C* and the type of kernel) of the SVM we can 
