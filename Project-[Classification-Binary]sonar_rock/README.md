@@ -31,8 +31,8 @@ Using above command, we get a statistical glimps of data. There are 208 instance
      
      
 ## Evaluation Algorithm
-   - Split-out validation dataset, Test options and Evaluations metric
-We will use a validation hold-out set holding back from our analysis and modeling. This is a smoke test that we can use to see if we messed up and to give us confidence on our estimates of accuracy on unseen data. Specifically, it is 80% for modeling and 20% for validation, with 10-fold cross validation on accuracy evaluation metric.
+   - Split-out validation dataset, Test options and Evaluations metric
+    We will use a validation hold-out set holding back from our analysis and modeling. This is a smoke test that we can use to see if we messed up and to give us confidence on our estimates of accuracy on unseen data. Specifically, it is 80% for modeling and 20% for validation, with 10-fold cross validation on accuracy evaluation metric.
 ```
 seed = 7
 
@@ -42,6 +42,7 @@ X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size 
 num_folds = 10
 scoring = 'accuracy'
 ```
+
    - Baseline
    Create a baseline of performance on this problem and spot-check a number of different algorithms.
      - Logistic Regression (LR)
@@ -50,7 +51,7 @@ scoring = 'accuracy'
      - Support Vector Machines (SVM)
      - Gaussian Naive Bayes (NB)
      - k-Nearest Neighbors (KNN).
-     ```
+```
 models = []
 models.append(('LR', LogisticRegression())) 
 models.append(('LDA', LinearDiscriminantAnalysis())) 
@@ -58,16 +59,18 @@ models.append(('KNN', KNeighborsClassifier()))
 models.append(('CART', DecisionTreeClassifier())) 
 models.append(('NB', GaussianNB())) 
 models.append(('SVM', SVC()))
-     ```
-     With all default tuning parameters, we compare these algorithms by calculating the mean and standard deviation of accuracy for each algorithm.
-     ```
+```
+
+     With all default tuning parameters, we compare these algorithms by calculating the mean and standard deviation of accuracy for each algorithm. <br />
+     
+```
 LR: 0.782721 (std: 0.093796)
 LDA: 0.746324 (std: 0.117854)
 KNN: 0.808088 (std: 0.067507)
 CART: 0.740809 (std: 0.118120)
 NB: 0.648897 (std: 0.141868)
 SVM: 0.608824 (std: 0.118656)
-     ```
+```
      The results suggest that both Logistic Regression and k-Nearest Neighbors may be worth further study. Besides the mean accuracy values, let's take a look at the distribution of accuracy values calculated across cross-validation folds using box plots.
      ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/algs_cmpsn.png)
      The results show a tight distribution for KNN which is encouraging, suggesting low variance. The poor results for SVM are surprising.<br />
