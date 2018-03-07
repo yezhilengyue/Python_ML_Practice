@@ -103,8 +103,8 @@ ScaledSVM: 0.836397 (0.088697)
    The box plot show the promise of SVM and kNN which are worth further study with some tuning techniques.
    
    
-   - **Algorithm Tuning** <br />
-     - Params tuning with kNN <br />
+## Algorithm Tuning
+   - Params tuning with kNN <br />
      Below we try all odd values of k from 1 to 21, covering the default value of 7 using grid search. Each k value is evaluated using 10-fold cross validation on the training standardized dataset.
 ```
 Best: 0.849398 using {'n_neighbors': 1}
@@ -120,6 +120,62 @@ Best: 0.849398 using {'n_neighbors': 1}
 0.710843 (0.108829) with: {'n_neighbors': 21}
 ```
    Interestingly, the optimal k is 1. This means that the algorithm will make predictions using the most similar instance in the training dataset alone. 
-   
-     - Params tuning with SVM <br />
-       There are two parameters (the value of *C* and the type of kernel) of the SVM we can 
+   - Params tuning with SVM <br />
+       There are two parameters (the value of *C* and the type of kernel) of the SVM we can tune. By default, the SVM (the SVC class) uses the Radial Basis Function (RBF) kernel with a *C* value set to 1.0.
+```
+c_values = [0.1, 0.3, 0.5, 0.7, 0.9, 1.0, 1.3, 1.5, 1.7, 2.0]
+kernel_values = ['linear', 'poly', 'rbf', 'sigmoid']
+```
+  We will try a number of simpler kernel types and C values with less bias and more bias (less than and more than 1.0 respectively).
+```
+Best: 0.867470 using {'C': 1.5, 'kernel': 'rbf'}
+
+0.759036 (0.098863) with: {'C': 0.1, 'kernel': 'linear'}
+0.530120 (0.118780) with: {'C': 0.1, 'kernel': 'poly'}
+0.572289 (0.130339) with: {'C': 0.1, 'kernel': 'rbf'}
+0.704819 (0.066360) with: {'C': 0.1, 'kernel': 'sigmoid'}
+0.746988 (0.108913) with: {'C': 0.3, 'kernel': 'linear'}
+0.644578 (0.132290) with: {'C': 0.3, 'kernel': 'poly'}
+0.765060 (0.092312) with: {'C': 0.3, 'kernel': 'rbf'}
+0.734940 (0.054631) with: {'C': 0.3, 'kernel': 'sigmoid'}
+0.740964 (0.083035) with: {'C': 0.5, 'kernel': 'linear'}
+0.680723 (0.098638) with: {'C': 0.5, 'kernel': 'poly'}
+0.789157 (0.064316) with: {'C': 0.5, 'kernel': 'rbf'}
+0.746988 (0.059265) with: {'C': 0.5, 'kernel': 'sigmoid'}
+0.746988 (0.084525) with: {'C': 0.7, 'kernel': 'linear'}
+0.740964 (0.127960) with: {'C': 0.7, 'kernel': 'poly'}
+0.813253 (0.084886) with: {'C': 0.7, 'kernel': 'rbf'}
+0.753012 (0.058513) with: {'C': 0.7, 'kernel': 'sigmoid'}
+0.759036 (0.096940) with: {'C': 0.9, 'kernel': 'linear'}
+0.771084 (0.102127) with: {'C': 0.9, 'kernel': 'poly'}
+0.837349 (0.087854) with: {'C': 0.9, 'kernel': 'rbf'}
+0.753012 (0.073751) with: {'C': 0.9, 'kernel': 'sigmoid'}
+0.753012 (0.099230) with: {'C': 1.0, 'kernel': 'linear'}
+0.789157 (0.107601) with: {'C': 1.0, 'kernel': 'poly'}
+0.837349 (0.087854) with: {'C': 1.0, 'kernel': 'rbf'}
+0.753012 (0.070213) with: {'C': 1.0, 'kernel': 'sigmoid'}
+0.771084 (0.106063) with: {'C': 1.3, 'kernel': 'linear'}
+0.819277 (0.106414) with: {'C': 1.3, 'kernel': 'poly'}
+0.849398 (0.079990) with: {'C': 1.3, 'kernel': 'rbf'}
+0.710843 (0.076865) with: {'C': 1.3, 'kernel': 'sigmoid'}
+0.759036 (0.091777) with: {'C': 1.5, 'kernel': 'linear'}
+0.831325 (0.109499) with: {'C': 1.5, 'kernel': 'poly'}
+0.867470 (0.090883) with: {'C': 1.5, 'kernel': 'rbf'}
+0.740964 (0.063717) with: {'C': 1.5, 'kernel': 'sigmoid'}
+0.746988 (0.090228) with: {'C': 1.7, 'kernel': 'linear'}
+0.831325 (0.115695) with: {'C': 1.7, 'kernel': 'poly'}
+0.861446 (0.087691) with: {'C': 1.7, 'kernel': 'rbf'}
+0.710843 (0.088140) with: {'C': 1.7, 'kernel': 'sigmoid'}
+0.759036 (0.094276) with: {'C': 2.0, 'kernel': 'linear'}
+0.831325 (0.108279) with: {'C': 2.0, 'kernel': 'poly'}
+0.867470 (0.094701) with: {'C': 2.0, 'kernel': 'rbf'}
+0.728916 (0.095050) with: {'C': 2.0, 'kernel': 'sigmoid'}
+```
+  We can see the most accurate configuration was SVM with an RBF kernel and a C value of 1.5. The accuracy 86.7470% is seemingly better than what KNN could achieve.
+  
+  
+  
+  
+  
+  
+  
