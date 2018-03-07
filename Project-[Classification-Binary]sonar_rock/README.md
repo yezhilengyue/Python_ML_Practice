@@ -191,7 +191,9 @@ RF: 0.795956 (0.095662)
 ET: 0.795221 (0.083918)
 ```
 ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/Ensemble%5Dalgs_cmpsn.png)
+The results suggest GBM may be worthy of further study, with a strong mean and a spread
+that skews up towards high 90s (%) in accuracy.  
   
   
-  
-  
+## Make Prediction
+
