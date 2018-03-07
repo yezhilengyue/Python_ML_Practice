@@ -99,7 +99,7 @@ ScaledNB: 0.648897 (0.141868)
 ScaledSVM: 0.836397 (0.088697)      
    ```
    Again, kNN is still doing well, even better than before. Moreover, after standardization, the performance of SVM improves a lot.
-   ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/Ensemble%5Dalgs_cmpsn.png)
+   ![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/%5BStandardization%5Dalgs_cmpsn.png)
    The box plot show the promise of SVM and kNN which are worth further study with some tuning techniques.
    
    
@@ -173,8 +173,24 @@ Best: 0.867470 using {'C': 1.5, 'kernel': 'rbf'}
 ```
   We can see the most accurate configuration was SVM with an RBF kernel and a C value of 1.5. The accuracy 86.7470% is seemingly better than what KNN could achieve.
   
-  
-  
+   - Ensemble tuning <br />
+  Besides parameter tuning, another algs improvement technique is by using ensemble methods. We will use 2 boosting (AdaBoost and Gradient Boosting) and 2 bagging (Random Forests and Extra Trees) methods. <br />
+  *"No data standardization is used in this case because all four ensemble algorithms are based on decision trees that are less sensitive to data distributions."*
+```
+ensembles = []
+ensembles.append(('AB', AdaBoostClassifier())) 
+ensembles.append(('GBM', GradientBoostingClassifier())) 
+ensembles.append(('RF', RandomForestClassifier())) 
+ensembles.append(('ET', ExtraTreesClassifier()))
+```
+ The results:
+```
+AB: 0.819853 (0.058293)
+GBM: 0.823897 (0.101025)
+RF: 0.795956 (0.095662)
+ET: 0.795221 (0.083918)
+```
+![alt text](https://github.com/yezhilengyue/Python_ML_Practice/blob/master/Project-%5BClassification-Binary%5Dsonar_rock/Ensemble%5Dalgs_cmpsn.png)
   
   
   
