@@ -1,21 +1,21 @@
 import spacy
 import nltk
-import nltk.tokenize.toktok import ToktokTokenizer
+from nltk.tokenize.toktok import ToktokTokenizer
 import re
 from bs4 import BeautifulSoup
 import unicodedata
 
 from contractions import CONTRACTION_MAP
 
-nlt = spacy.load('en', parse = False, tag = False, entity = False)
+nlp = spacy.load('en', parse = False, tag = False, entity = False)
 tokenizer = ToktokTokenizer()
 stopword_list = nltk.corpus.stopwords.words('english')
 stopword_list.remove('no')
 stopword_list.remove('not')
 
 # # Cleaning Text - strip HTML
-def strip_html_tag(text):
-    soup = BeautifulSoup(text, "html.parse")
+def strip_html_tags(text):
+    soup = BeautifulSoup(text, "html.parser")
     stripped_text = soup.get_text()
     return stripped_text
 
@@ -43,7 +43,7 @@ def expand_contractions(text, contraction_mapping = CONTRACTION_MAP):
     
     expanded_text = contractions_pattern.sub(expand_match, text)
     expanded_text = re.sub("'", "", expanded_text)
-    return expand_text
+    return expanded_text
 
 
 # # Removing Special Characters
@@ -52,7 +52,7 @@ def remove_special_characters(text):
     return text
 
 
-# # Lemmatizing text
+# # Stemming(root stems) and Lemmatization(root word)
 def lemmatize_text(text):
     text = nlp(text)
     text = ' '.join([word.lemma_ if word.lemma_ != '-PRON-' else word.text for word in text])
@@ -101,7 +101,7 @@ def normalize_corpus(corpus, html_stripping=True, contraction_expansion=True,
         
         # insert spaces between special characters to isolate them
         special_char_pattern = re.compile(r'([{.(-)!}])')
-        doc = special_char_removal.sub(" \\1 ", doc)
+        doc = special_char_pattern.sub(" \\1 ", doc)
         
         if text_lemmatization:
             doc = lemmatize_text(doc)
@@ -113,20 +113,10 @@ def normalize_corpus(corpus, html_stripping=True, contraction_expansion=True,
         doc = re.sub(' +', ' ', doc)
         
         if stopword_removal:
-            doc = stopword_removal(doc, is_lower_case=text_lower_case)
+            doc = remove_stopwords(doc, is_lower_case=text_lower_case)
         
         normalized_corpus.append(doc)
         
     return normalized_corpus
     
     
-    
-    
-
-        
-        
-        
-        
-        
-        
-        
