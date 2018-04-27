@@ -28,7 +28,7 @@ def get_topics_terms_weights(weights, feature_names):
     feature_names = np.array(feature_names)
     sorted_indices = np.array([list(row[::-1]) for row in np.argsort(np.abs(weights))])
     sorted_weights = np.array([list(wt[index]) for wt, index in zip(weights,sorted_indices)])
-    sorted_terms = np.array([list(features_names[row]) for row in sorted_indices])
+    sorted_terms = np.array([list(feature_names[row]) for row in sorted_indices])
     
     topics = [np.vstack((term.T, term_weights.T)).T for terms, term_weights in zip(sorted_terms, sorted_weights)]
     
